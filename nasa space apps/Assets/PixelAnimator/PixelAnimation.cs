@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using binc.PixelAnimator.Common;
+using UnityEditor;
 
 
 namespace binc.PixelAnimator{
@@ -31,6 +32,17 @@ namespace binc.PixelAnimator{
 
         public List<Sprite> GetSpriteList(){
             return pixelSprites.Select(pixelSprite => pixelSprite.sprite).ToList();
+        }
+
+        public void SetSpriteList(List<Sprite> sprites){
+            foreach (var sprite in sprites) {
+                AddPixelSprites(sprite);
+            }
+        }
+
+        public void AddPixelSprites(Sprite sprite){
+            pixelSprites ??= new List<PixelSprite>();
+            pixelSprites.Add(new PixelSprite(sprite, GUID.Generate().ToString()));
         }
         
         

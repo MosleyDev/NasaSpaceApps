@@ -51,14 +51,14 @@ namespace binc.PixelAnimator{
 
         private void Update() {
             if(CurrentAnimation != null){
-                Play();
+                PlaySheet();
             }
             
 
         }
 
-        private void Play(){
-            if (CurrentAnimation != previousAnimation) {
+        private void PlaySheet(){
+            if (CurrentAnimation != previousAnimation || stop) {
                 previousAnimation = CurrentAnimation;
                 return;
             }
@@ -73,36 +73,36 @@ namespace binc.PixelAnimator{
                 foreach (var l in CurrentAnimation.Layers)
                     ApplySpriteProperty(l);
             }
-            
-            if (!(timer >= secondsPerFrame) && stop) return;
-            timer -= secondsPerFrame;
-            
 
-
-            if (loop) {
-                activeFrame = (activeFrame + 1) % sprites.Count;
-                spriteRenderer.sprite = sprites[activeFrame];
-                ApplyHitBox();
-            }
-            else{
-                if (spriteRenderer.sprite != sprites[^1]) {
+            if (timer >= secondsPerFrame) {
+                
+            
+                timer -= secondsPerFrame;
+                
+                if (loop) {
                     activeFrame = (activeFrame + 1) % sprites.Count;
                     spriteRenderer.sprite = sprites[activeFrame];
                     ApplyHitBox();
                 }
-            }          
+                else{
+                    if (spriteRenderer.sprite != sprites[^1]) {
+                        activeFrame = (activeFrame + 1) % sprites.Count;
+                        spriteRenderer.sprite = sprites[activeFrame];
+                        ApplyHitBox();
+                    }
+                }          
 
-            
+            }
             
         }
 
-        public void ChangeAnimation(PixelAnimation nextAnimation){
-            if (CurrentAnimation == nextAnimation) return;
+        public void Play(PixelAnimation anim){
+            stop = false;
+            if (CurrentAnimation == anim) return;
             previousAnimation = CurrentAnimation;
-            CurrentAnimation = nextAnimation;
+            CurrentAnimation = anim;
             activeFrame = 0;
             timer = 0;
-            stop = false;
             spriteRenderer.sprite = CurrentAnimation.GetSpriteList()[activeFrame];
             gameObjects = new List<GameObject>();
 
@@ -111,7 +111,8 @@ namespace binc.PixelAnimator{
 
             }
             
-            if(baseObject.transform.childCount <= 0){
+            if(baseObject.transform.childCount <= 0 && CurrentAnimation.Layers != null){
+                
                 foreach (var layer in CurrentAnimation.Layers) {
                     AddGameObject(groups.First(x => x.Guid == layer.Guid));
                 }
@@ -120,6 +121,32 @@ namespace binc.PixelAnimator{
             ApplyHitBox();
 
         }
+        public void Play(PixelAnimation anim, int startIndex){
+            stop = false;
+            if (CurrentAnimation == anim) return;
+            previousAnimation = CurrentAnimation;
+            CurrentAnimation = anim;
+            activeFrame = startIndex;
+            timer = 0;
+            spriteRenderer.sprite = CurrentAnimation.GetSpriteList()[activeFrame];
+            gameObjects = new List<GameObject>();
+
+            foreach (Transform child in baseObject.transform) {
+                Destroy(child.gameObject);
+
+            }
+            
+            if(baseObject.transform.childCount <= 0 && CurrentAnimation.Layers != null){
+                
+                foreach (var layer in CurrentAnimation.Layers) {
+                    AddGameObject(groups.First(x => x.Guid == layer.Guid));
+                }
+            }
+            
+            ApplyHitBox();
+
+        }
+
 
 
 
@@ -189,6 +216,7 @@ namespace binc.PixelAnimator{
 
 
         private void ApplyHitBox(){
+            if (CurrentAnimation.Layers == null) return;
             var layers = CurrentAnimation.Layers;
             var sprites = CurrentAnimation.GetSpriteList();
 

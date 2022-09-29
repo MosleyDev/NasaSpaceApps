@@ -13,8 +13,58 @@ MonoBehaviour:
   m_Name: River
   m_EditorClassIdentifier: 
   loop: 1
-  frameRate: 0
-  pixelSprites: []
+  frameRate: 12
+  pixelSprites:
+  - spriteId: 3646350304f759f4b9bebce27f30e8c8
+    sprite: {fileID: -998106668, guid: e8286b999c6003349acbc5b1b172a59e, type: 3}
+    spriteData:
+      propertyValues: []
+      eventNames: []
+  - spriteId: a73fcbf6619c73246b52efb2f1dbff51
+    sprite: {fileID: 233861513, guid: e8286b999c6003349acbc5b1b172a59e, type: 3}
+    spriteData:
+      propertyValues: []
+      eventNames: []
+  - spriteId: b4dcf2b2d6c19b947b89eedd233da8bf
+    sprite: {fileID: -1161128998, guid: e8286b999c6003349acbc5b1b172a59e, type: 3}
+    spriteData:
+      propertyValues: []
+      eventNames: []
+  - spriteId: 4c237c1c6e8a1d94a8ae91c7feefdd91
+    sprite: {fileID: 1390778643, guid: e8286b999c6003349acbc5b1b172a59e, type: 3}
+    spriteData:
+      propertyValues: []
+      eventNames: []
+  - spriteId: 47d06a753f468924993e7b872ef1f929
+    sprite: {fileID: -159715846, guid: e8286b999c6003349acbc5b1b172a59e, type: 3}
+    spriteData:
+      propertyValues: []
+      eventNames: []
+  - spriteId: f8cdb281ae05a3e4580296c4388c245e
+    sprite: {fileID: -1320551597, guid: e8286b999c6003349acbc5b1b172a59e, type: 3}
+    spriteData:
+      propertyValues: []
+      eventNames: []
+  - spriteId: ac2944b113fad9647a7368450a02faab
+    sprite: {fileID: -674701177, guid: e8286b999c6003349acbc5b1b172a59e, type: 3}
+    spriteData:
+      propertyValues: []
+      eventNames: []
+  - spriteId: 83b4b6d7d0254d84782b600314ae627c
+    sprite: {fileID: -633142282, guid: e8286b999c6003349acbc5b1b172a59e, type: 3}
+    spriteData:
+      propertyValues: []
+      eventNames: []
+  - spriteId: 23578665c970ca144b69c4c14c8347b9
+    sprite: {fileID: -440110625, guid: e8286b999c6003349acbc5b1b172a59e, type: 3}
+    spriteData:
+      propertyValues: []
+      eventNames: []
+  - spriteId: a0c98c8f661a1db4297b7bdd17ac50e0
+    sprite: {fileID: 207076502, guid: e8286b999c6003349acbc5b1b172a59e, type: 3}
+    spriteData:
+      propertyValues: []
+      eventNames: []
   layers: []
   references:
     version: 2

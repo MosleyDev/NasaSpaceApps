@@ -11,6 +11,7 @@ public class RoverController : MonoBehaviour{
     [SerializeField] private Rigidbody2D body;
     [SerializeField] private AnimationManager anim;
     [SerializeField] private PixelAnimation river;
+    [SerializeField] private PixelAnimation riverReversed;
     
     private float xInput;
     private int facingDirection;
@@ -25,8 +26,11 @@ public class RoverController : MonoBehaviour{
         };
 
 
-        if (Mathf.Abs(xInput) > 0) {
-            anim.ChangeAnimation(river);
+        if (xInput > 0) {
+            anim.Play(river, anim.ActiveFrame);
+        }
+        else if (xInput < 0) {
+            anim.Play(riverReversed, anim.ActiveFrame);
         }
         else {
             anim.Stop();
